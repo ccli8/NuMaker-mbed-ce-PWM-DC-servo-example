@@ -1,7 +1,11 @@
 // NuMaker-PFM-NUC472 : PWM1 output to drive DC servo motor
 #include "mbed.h"
 
+#if defined(TARGET_NUMAKER_PFM_NUC472)
 PwmOut pwm1(PF_10); // PWM1 pinname
+#elif defined(TARGET_NUMAKER_PFM_M453)
+PwmOut pwm1(PC_7);
+#endif
 
 int main() {
     
