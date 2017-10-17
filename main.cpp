@@ -7,6 +7,8 @@ PwmOut pwm1(PF_10); // PWM1 pinname
 PwmOut pwm1(PC_7);
 #elif defined(TARGET_NUMAKER_PFM_M487)
 PwmOut pwm1(PA_4); // PWM1 pinname
+#elif defined(TARGET_NUMAKER_PFM_NANO130)
+PwmOut pwm1(PA_13); // PWM1 pinname
 #endif
 
 int main() {
