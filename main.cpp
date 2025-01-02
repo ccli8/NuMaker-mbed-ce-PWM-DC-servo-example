@@ -1,8 +1,9 @@
-// NuMaker-PFM-NUC472 : PWM1 output to drive DC servo motor
 #include "mbed.h"
 
-/* NOTE: Most targets has UNO D3 for PWM. Check it for supporting new targets */
-PwmOut pwm1(D3);
+/* NOTE: Most targets have UNO D3 for PWM. Check it for supporting new targets */
+#if TARGET_NUMAKER_PFM_NUC472
+PwmOut pwm_servo(D3);
+#endif
 
 int main() {
     
@@ -11,12 +12,12 @@ int main() {
 #ifdef MBED_MAJOR_VERSION
     printf("Mbed OS version %d.%d.%d\r\n\n", MBED_MAJOR_VERSION, MBED_MINOR_VERSION, MBED_PATCH_VERSION);
 #endif
-    pwm1.period_us(20000);      // set PWM period to 20ms (50Hz)
+    pwm_servo.period_us(20000);     // set PWM period to 20ms (50Hz)
         
     for (i=500; i<=2500; i=i+200) { // from 0.5ms to 2.5ms
-        pwm1.pulsewidth_us(i);      // set PWM pulse width to rotate motor
+        pwm_servo.pulsewidth_us(i); // set PWM pulse width to rotate motor
 #if MBED_MAJOR_VERSION >= 6
-        ThisThread::sleep_for(1000);
+        ThisThread::sleep_for(1000ms);
 #else
         Thread::wait(1000);         // delay
 #endif
